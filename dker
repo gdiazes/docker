@@ -1,0 +1,55 @@
+#asignar nombre
+docker --name Lab03 hello-world
+docker ps -a
+
+#inspeccionar la conf
+docker inspect con_id
+
+#elimina contenero
+docker rm {id o nombre del contenerdo]
+
+#borrar todos los contenerores 
+docker conatiner prune
+
+
+# Hola mundo con docker
+$ docker run hello-world
+# Ver contenedores corriendo
+$ docker ps
+# Ver todos los contenedores
+$ docker ps -a
+# Inspecionar la config un contenedor
+$ docker inspect <container_id or container_name>
+# Crear un contenedor con un nombre personalizado
+$ docker run --name <custom_name> <image_name>
+# Renombrar un contenedor
+$ docker rename --name <old_name> <new_name>
+# Eliminar un contenedor
+$ docker rm <container_id or container_name>
+# Eliminar todos los contenedores apagados
+$ docker container prune
+# Eliminar TODOS los contenedores
+$ docker rm -f $(docker ps -aq)
+
+#corriendo ubuntu de forma interactiva
+docker run -it ubuntu
+uname
+cat /etc/lsb-release
+
+
+
+$ docker ps -a (veo todos los contenedores)
+$ docker --name <nombre> -d ubuntu -f <comando>
+$ docker --name alwaysup -d ubuntu tail -f /dev/null (mantiene el contenedor activo)
+$ docker exec -it alwaysup bash (entro al contenedor)
+$ docker inspect --format ‘{{.State.Pid}}’ alwaysup (veo el main process del ubuntu)
+desde Linux si ejecuto kill -9 <PID> mata el proceso dentro del contenedor de ubuntu pero desde MAC no funciona
+docker inspect --format '{{.State.Pid}}' <container>
+kill -9 <id>
+
+docker kill alwaysup
+
+docker run -d --name [name] -p [HostPort/8080]:[ContainerPort/80] [imagen/nginx]
+docker run -d --name www -p 8080:80 nginx
+docker run -d --name www -d -p 8080:80 nginx
+docker run --tail 10 www

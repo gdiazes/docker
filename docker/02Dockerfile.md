@@ -33,3 +33,6 @@ docker rmi gdiaz/web:latest
 ```
 docker run -t -i --rm  gdiaz bash
 ```
+
+docker run -d -p 8800:80 gdiaz
+curl localhost:8800

@@ -1,0 +1,10 @@
+docker ps
+docker stop www
+docker run -it --rm -d -p 8080:80 -v ./public_html:/usr/share/nginx/html --name www nginx
+
+
+Dockerfile:
+FROM nginx:latest
+COPY /sitio /usr/share/nginx/html
+
+VOLUME [ "/sitio", "/usr/share/nginx/html" ]

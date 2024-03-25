@@ -29,10 +29,7 @@ docker image tag web:latest gdiaz/web:latest
 docker rmi -f <id>
 docker rmi gdiaz/web:latest
 ```
-
- _____ _____ ____ ____  _   _ ____
-|_   _| ____/ ___/ ___|| | | |  _ \
-  | | |  _|| |   \___ \| | | | |_) |
-  | | | |__| |___ ___) | |_| |  __/
-  |_| |_____\____|____/ \___/|_|
-
+### Levantando el contenedor
+```
+docker run -t -i --rm  gdiaz bash
+```

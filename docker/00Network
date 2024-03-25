@@ -1,0 +1,9 @@
+docker run -it --rm -d -p 8080:80 --name www nginx
+docker inspect www
+
+docker run -it --rm -d -p 127.0.0.1 8080:80 --name www nginx
+docker inspect www
+docker network ls
+
+docker network create nettec
+docker network ls

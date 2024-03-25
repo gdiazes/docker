@@ -14,7 +14,7 @@ docker rmi -f <id>
 ```
 ### Creando la imagen.
 ```
-docker build -t web:latest
+docker build . -t gdiaz:latest
 docker images
 ```
 ### -t = tageado.

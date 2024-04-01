@@ -13,7 +13,6 @@ gdiaz/nginx
 registry.example.com:5000/my-private-image
 ```
 ### Buscando un contenedor <ubuntu>
-
 ```
 docker search ubuntu
 ```
@@ -51,7 +50,6 @@ ubuntu/telegraf                  Telegraf collects, processes, aggregates & w…
 ### Ejecutando un contenedor de forma interactiva. <ubuntu>
 #### -i tells Docker to connect us to the container's stdin.
 #### -t tells Docker that we want a pseudo-terminal.
-
 ```
 docker run -it ubuntu
 ```
@@ -78,3 +76,30 @@ exit
 ```
 >[!IMPORTANT]
 >Después de salir del contenedor, la configuración realizada se pierde.
+
+#### Listando las imagenes.
+```
+docker images
+```
+
+#### Listando el id completo de las imagenes.
+```
+docker images --no-trunc
+```
+
+#### Listando contenedores en ejecución.
+```
+docker ps
+```
+
+#### Filtrando la busqueda de imagenes.
+```
+docker images --filter=reference='ubuntu'
+docker images | grep ubuntu
+```
+
+#### Ingresando al contenedor.
+```
+docker exec -ti <id> /bin/bash
+```
+ 

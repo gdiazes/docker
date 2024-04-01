@@ -102,4 +102,33 @@ docker images | grep ubuntu
 ```
 docker exec -ti <id> /bin/bash
 ```
- 
+
+#### Four basic Docker CLI comes into action:
+
+```
+docker run -d -p 80:80 nginx
+docker images
+docker ps
+```
+### The docker export - Export a container’s filesystem as a tar archive
+```
+docker export <id> nginx.tar
+```
+
+### The docker import - Import the contents from a tarball to create a filesystem image
+```
+docker import - mynginx < nginx.tar
+```
+### The docker save - Save one or more images to a tar archive (streamed to STDOUT by default)
+```
+docker save -o mynginx1.tar nginx
+```
+### The docker load - Load an image from a tar archive or STDIN
+```
+docker load < mynginx1.tar
+```
+### Eliminando una imagen.
+```
+docker rmi <image>
+docker rmi -f  <image>
+```

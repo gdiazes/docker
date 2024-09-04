@@ -1,6 +1,0 @@
-FROM nginx:latest
-VOLUME [ "/html", "/usr/share/nginx/html" ]
-#ports:
-#  - <Host_PORT>: <Container_PORT>
-ports:
-  - 8585:80

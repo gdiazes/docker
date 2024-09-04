@@ -17,15 +17,18 @@ VOLUME [ "/html", "/usr/share/nginx/html" ]
 ports:
   - 8585:80
 ```
-FROM nginx:latest:
+# Dockerfile.
 
-Esta línea indica que la imagen base para el contenedor será nginx en su versión más reciente (latest). Nginx es un servidor web popular que se utiliza comúnmente para servir contenido web de manera eficiente. Al usar esta imagen, el contenedor tendrá Nginx preinstalado.
-VOLUME [ "/html", "/usr/share/nginx/html" ]:
+### FROM nginx:latest
+- **Descripción:** Esta línea establece la imagen base para tu contenedor, en este caso, es la imagen oficial de **nginx**. Al utilizar `nginx:latest`, estás especificando que deseas la versión más reciente de nginx disponible en el registro de Docker Hub.
+- **Importancia:** Utilizar una imagen oficial como nginx es ideal para entornos web, ya que te proporciona un servidor web listo para usar.
 
-Aquí se crea un volumen. Los volúmenes en Docker permiten la persistencia de datos entre los contenedores y el sistema anfitrión. En este caso, el volumen conecta el directorio /html en el sistema anfitrión con el directorio /usr/share/nginx/html dentro del contenedor, que es el directorio predeterminado donde Nginx busca archivos estáticos para servir (como páginas HTML). Esto permite que los archivos almacenados en /html en el anfitrión se reflejen automáticamente en Nginx.
-ports::
+### VOLUME [ "/html", "/usr/share/nginx/html" ]
+- **Descripción:** Esta línea crea un **volumen** en Docker que mapea el directorio local `/html` a `/usr/share/nginx/html` dentro del contenedor.
+- **Importancia:** El directorio `/usr/share/nginx/html` es el directorio por defecto donde nginx sirve archivos HTML. Al mapearlo a `/html` en el host, puedes almacenar tus archivos estáticos (como HTML, CSS, imágenes, etc.) localmente y tenerlos accesibles dentro del contenedor nginx.
 
-Esta sección indica que se está exponiendo un puerto en el contenedor y mapeándolo a un puerto en el sistema anfitrión. No es estrictamente parte de la sintaxis del Dockerfile, sino que se usaría en un archivo de configuración de Docker Compose o como parte del comando docker run.
-- 8585:80:
+### ports:
+#### - 8585:80
+- **Descripción:** Esta línea asigna el puerto `8585` del **host** al puerto `80` del **contenedor**.
+- **Importancia:** El puerto `80` es el puerto por defecto en el que nginx sirve contenido web. Al exponer el puerto `8585` en el host, puedes acceder a tu servidor nginx simplemente visitando `http://localhost:8585` en tu navegador. Esto es útil cuando deseas evitar conflictos con otros servicios que puedan estar utilizando el puerto `80` en el host.
 
-Esta línea especifica el mapeo de puertos. El puerto 80 es el puerto por defecto que utiliza Nginx dentro del contenedor. El puerto 8585 es el puerto en el sistema anfitrión. Al mapearlos de esta forma, cuando accedas a http://localhost:8585 en tu navegador, estarás accediendo al servidor Nginx dentro del contenedor, que está escuchando en el puerto 80.

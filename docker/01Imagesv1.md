@@ -3,6 +3,8 @@ Crear la carpeta html
 ```
 mkdir html
 cd html
+touch index.html
+echo "Hello Docker" > index.html
 ```
 Crear el archivo Dockerfile
 ```

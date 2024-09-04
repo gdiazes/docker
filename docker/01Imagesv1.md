@@ -1,4 +1,4 @@
-### Creando una imagen desde el archivo Dockerfile
+### Construyendo Dockerfile
 Crear la carpeta html
 ```
 mkdir html
@@ -13,24 +13,46 @@ vi Dockerfile
 Agregar el siguiente contenido:
 ```
 FROM nginx:latest
-VOLUME [ "/html", "/usr/share/nginx/html" ]
-#ports:
-#  - <Host_PORT>: <Container_PORT>
-ports:
-  - 8585:80
+WORKDIR /html
+COPY . /usr/share/nginx/html  
 ```
-# Dockerfile.
+### Creando una imagen desde el archivo Dockerfile
+docker build -t <nombre_de_imagen>:version .
+```
+docker build -t app01:1.0 .
+docker build -t app01:2.0 .
+docker build -t app01:3.0 .
 
-### FROM nginx:latest
-- **Descripción:** Esta línea establece la imagen base para tu contenedor, en este caso, es la imagen oficial de **nginx**. Al utilizar `nginx:latest`, estás especificando que deseas la versión más reciente de nginx disponible en el registro de Docker Hub.
-- **Importancia:** Utilizar una imagen oficial como nginx es ideal para entornos web, ya que te proporciona un servidor web listo para usar.
+```
+### Buscando imagen por nombre
+docker images <nombre>
+```
+docker images app01
+```
 
-### VOLUME [ "/html", "/usr/share/nginx/html" ]
-- **Descripción:** Esta línea crea un **volumen** en Docker que mapea el directorio local `/html` a `/usr/share/nginx/html` dentro del contenedor.
-- **Importancia:** El directorio `/usr/share/nginx/html` es el directorio por defecto donde nginx sirve archivos HTML. Al mapearlo a `/html` en el host, puedes almacenar tus archivos estáticos (como HTML, CSS, imágenes, etc.) localmente y tenerlos accesibles dentro del contenedor nginx.
+### Buscando imagen por tag
+```
+docker images --filter=reference='*:1.0'
+```
 
-### ports:
-#### - 8585:80
-- **Descripción:** Esta línea asigna el puerto `8585` del **host** al puerto `80` del **contenedor**.
-- **Importancia:** El puerto `80` es el puerto por defecto en el que nginx sirve contenido web. Al exponer el puerto `8585` en el host, puedes acceder a tu servidor nginx simplemente visitando `http://localhost:8585` en tu navegador. Esto es útil cuando deseas evitar conflictos con otros servicios que puedan estar utilizando el puerto `80` en el host.
+### Mostrando el id completo de cada imagen.
+```
+docker images --no-trunc
+```
 
+### Cambiando el tag de una imagen.
+```
+docker image tag  app01:3.0 gdiaz/app01:latest
+```
+
+### Cambiando el tag de una imagen.
+docker run -p <puerto_host>:<puerto_contenedor> <nombre_imagen>
+```
+docker run -it --rm -d -p 8080:80 app01:3.0
+```
+
+### Eliminando una imagen
+```
+docker rmi app01:3.0
+docker rmi -f <IID>
+```

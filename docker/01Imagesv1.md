@@ -13,7 +13,6 @@ vi Dockerfile
 Agregar el siguiente contenido:
 ```
 FROM nginx:latest
-WORKDIR /html
 COPY . /usr/share/nginx/html  
 ```
 ### Creando una imagen desde el archivo Dockerfile
